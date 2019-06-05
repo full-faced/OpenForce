@@ -50,7 +50,7 @@ describe('auth routes', () => {
       });
   });
 
-  it.only('refuses to sign in an invalid user', () => {
+  it('refuses to sign in an invalid user', () => {
     return request(app)
       .post('/auth/signup')
       .send(user)
