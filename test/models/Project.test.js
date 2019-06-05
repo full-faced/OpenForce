@@ -8,7 +8,8 @@ describe('user model testing', () => {
     summary: 'is super cool but also broken, pls help!',
     projectUrl: 'www.awesome.info',
     imageUrl: 'wwww.imageurl.stuff',
-    users: [id]
+    users: [id],
+    posts: []
   });
 
   it('creates a project with the right stuff in it', () => {
@@ -18,7 +19,8 @@ describe('user model testing', () => {
       projectUrl: 'www.awesome.info',
       imageUrl: 'wwww.imageurl.stuff',
       users: [id],
-      _id: expect.any(mongoose.Types.ObjectId)
+      _id: expect.any(mongoose.Types.ObjectId),
+      posts: []
     });
   });
 
