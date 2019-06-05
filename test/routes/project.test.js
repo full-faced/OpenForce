@@ -43,4 +43,24 @@ describe('project routes tests', () => {
           });
       });
   });
+
+  it('get all posts', () => {
+    return request(app)
+      .post('/auth/signup')
+      .send({ username: 'cara', password: 'word', email: 'here' })
+      .then(createdUser => {
+        return request(app)
+          .post('/projects/')
+          .send({ ...projectInfo, users: [createdUser.body.user._id] })
+          .set('Authorization', `Bearer ${createdUser.body.token}`)
+          .then(() => {
+            return request(app)
+              .get('/projects/')
+              .then(res => {
+                console.log(res.body[0].users[0]);
+                expect(res.body).toHaveLength(1);
+              });
+          });
+      });
+  });
 });
