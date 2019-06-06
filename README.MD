@@ -13,7 +13,7 @@ To sign in:
 
 * https://openforce.herokuapp.com/projects
 * Takes fields: title, summary, projectUrl, imageUrl, users, and posts.
-* Supports POST, GET, and GET/id.
+* Supports POST, GET, GET /:id, and PATCH /:id (patch adds post ids to a project)
 * User must be signed in to create/add a new project only. 
 
 
@@ -21,6 +21,6 @@ To sign in:
 
 * https://openforce.herokuapp.com/posts
 * Takes fields: user, project, and text.
-* Supports POST GET and GET/projectId only.
+* Supports POST GET and GET /:projectId only.
 * User must be signed in to create/add a new post. 
 
