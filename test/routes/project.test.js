@@ -57,8 +57,25 @@ describe('project routes tests', () => {
             return request(app)
               .get('/projects/')
               .then(res => {
-                console.log(res.body[0].users[0]);
                 expect(res.body).toHaveLength(1);
+              });
+          });
+      });
+  });
+  it('get a single project for detail page', () => {
+    return request(app)
+      .post('/auth/signup')
+      .send({ username: 'cara', password: 'word', email: 'here' })
+      .then(createdUser => {
+        return request(app)
+          .post('/projects/')
+          .send({ ...projectInfo, users: [createdUser.body.user._id] })
+          .set('Authorization', `Bearer ${createdUser.body.token}`)
+          .then(createdProject => {
+            return request(app)
+              .get(`/projects/${createdProject.body.project._id}`)
+              .then(res => {
+                expect(res.body.users[0]._id).toEqual(createdUser.body.user._id);
               });
           });
       });
